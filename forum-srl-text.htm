@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<title>Tribal Forum - SRLText formatter</title>
+<style>
+* { font-family: Verdana }
+h1, h2 { font-family: Arial; font-weight: normal }
+div, p, li { margin-bottom: 1em }
+#input, #output { 
+	border: 1px solid #ccc; 
+	margin: 1em auto; 
+	padding: 	9.5px;
+	font-size: 	14px;
+	font-family: Consolas, monospace;
+	width: 60em;
+	height: 8em;	
+}
+#format, #clear { 
+	font-family: Arial;
+	font-size: 100%; 
+}
+#preview { 
+	width: 60em;
+	margin: 1em auto;
+	padding: 	9.5px;
+	font-size: 	13px;
+	line-height: 1.42857143;
+	word-break: break-all;
+	word-wrap: break-word;
+	color: #333;
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+	overflow: auto;
+ }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	$('#format').click(function() {
+		var input_text = $('#input').val();
+		input_text = input_text.replace(/Sad :\(/ig, ":(");
+		$('#preview').val(input_text);
+		input_text = input_text.replace(/\(/ig, "&#40;");
+		if ( $('#wordwrap').is(':checked') ) {
+			output_text = "<pre style='white-space:pre'>" + input_text + "</pre>"
+			$('#preview').css('white-space', 'pre');
+		} else {
+			output_text = "<pre style='white-space:normal'>" + input_text + "</pre>"
+			$('#preview').css('white-space', 'normal');
+		}		
+		$('#output').val(output_text);
+	});
+});
+</script>
+</head>
+
+<body>
+<h1>SRL Text formatter for forum posts</h1>
+<form action="">
+	<div>
+		<label for="input">Paste SRL Text</label><br>
+		<textarea id="input" placeholder="Input..."></textarea>
+		<div><input type="checkbox" id="wordwrap" checked /><label for="wordwrap"> Line breaks?</label></div>
+	</div>
+	<div>
+		<input type="button" id="format" value="Format">
+	</div>
+	<div>
+		<label for="output">Paste this into forum reply</label><br>
+		<textarea id="output"></textarea>
+	</div>
+	<div>
+		<label for="preview">Preview - What it should look like</label><br>
+		<textarea id="preview"></textarea>
+	</div>
+	<div>
+		<input type="reset" id="clear" value="Clear">
+	</div>
+</form>
+</body>
+</html>
