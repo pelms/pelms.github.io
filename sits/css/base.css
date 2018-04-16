@@ -10,4 +10,4 @@ a:hover, a:active { text-decoration: underline; }
 table { border-collapse: collapse; }
 th { text-align: right; }
 table, th, td { border: 1px solid #ccc; padding: .3em; }
-caption { text-align: left; font-style: italic; margin-bottom: 0.5em; }
+img { vertical-align: middle; }
