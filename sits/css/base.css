@@ -2,7 +2,6 @@
 body { margin: 8px; }
 h1, h2, h3, h4 { font-family: Arial, san-serif; font-weight: normal; color: #043E44; }
 h1 { color: white; background-color: #043E44; margin: -8px; padding: .6em .5em; }
-h3, h4 { font-weight: bold; font-style: italic; }
 p, li, div { margin-bottom: 0.4em; }
 a { color: blue; }
 a:link, a:visited { text-decoration: none; }
