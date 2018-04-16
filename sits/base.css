@@ -1,0 +1,13 @@
+* { font-family: Verdana, san-serif; }
+body { margin: 8px; }
+h1, h2, h3, h4 { font-family: Arial, san-serif; font-weight: normal; color: #043E44; }
+h1 { color: white; background-color: #043E44; margin: -8px; padding: .6em .5em; }
+h3, h4 { font-weight: bold; font-style: italic; }
+p, li, div { margin-bottom: 0.4em; }
+a { color: blue; }
+a:link, a:visited { text-decoration: none; }
+a:hover, a:active { text-decoration: underline; }
+table { border-collapse: collapse; }
+th { text-align: right; }
+table, th, td { border: 1px solid #ccc; padding: .3em; }
+caption { text-align: left; font-style: italic; margin-bottom: 0.5em; }
