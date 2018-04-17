@@ -5378,7 +5378,7 @@ function sits_tablesaw_refresh(sel,rst,collist){
 // string   sel : in ;jQuery selector to apply the chosen widget to
 // object   opt : in ;object containing options for chosen widget
 function sits_chosen_widget(sel,opt) {
-  var loc = sits_minified_path("../plugins/javascript/chosen/","chosen.jquery.js","chosen.jquery.min.js");
+var loc = sits_minified_path("pg-prospectus_files/","chosen.jquery.js","chosen.jquery.min.js");
   if(sits_files_array[loc]=="Y") { //already loaded...
     sits_do_chosen_widget(sel,opt); //...so call straight away
   }
