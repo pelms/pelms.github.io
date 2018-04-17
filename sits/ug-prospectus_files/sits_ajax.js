@@ -4510,18 +4510,18 @@ function sits_do_float_header(id) {
 // string   pcountry_field_id : in ;id of the country field associated to the find address button passed in
 // string   ppostcode_field_id : in ;id of the postcode field associated to the find address button passed in
 function sits_postcode(id,pcountry_field_id,ppostcode_field_id) {
-  if(sits_files_array["../javascript/sits_ajax_postcode.js"]=="Y") { //already loaded...
+  if(sits_files_array["sits_ajax_postcode.js"]=="Y") { //already loaded...
     sits_do_postcode(id, pcountry_field_id, ppostcode_field_id); //...so call straight away
   }
   else { //not loaded yet...
     var par = {}; //create an object of parameters
-    par.url = "../javascript/sits_ajax_postcode.js";
+    par.url = "sits_ajax_postcode.js";
     par.fnc = sits_do_postcode;
     par.p01 = id;
     par.p02 = pcountry_field_id;
     par.p03 = ppostcode_field_id;
     var len = sits_param_array.push(par); //save for later
-    sits_include_file("../javascript/sits_ajax_postcode.js");
+    sits_include_file("sits_ajax_postcode.js");
   }
   return true;
 }
