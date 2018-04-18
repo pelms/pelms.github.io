@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+	<meta http-equiv="Content-Security-Policy">
+<!-- <script type="text/javascript" src="cordova.js"></script> -->
+        <!-- jQuery -->
+<!-- <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css"> 
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
+	<script type="text/javascript" id="jqm-trans-disable"> 
+	/* For having a faster transition */
+	$(document).on("mobileinit", function() {
+		$.mobile.defaultPageTransition = "none";
+		$.mobile.defaultDialogTransition = "none";
+	});
+	</script>
+	<script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>        
+	<script type="text/javascript" src="js/index.js"></script> -->
+	<title>Taxi Sharing</title>
+		<style>
+		div, p, li { margin-bottom: 0.6em; }
+		</style>
+</head>
+<body>   
+	<div class="app">
+	<h1>Taxi Sharing</h1>
+	<!-- TODO 1(c) Google Map canvas -->
+	<div data-role="controlgroup" data-type="horizontal">
+		<!-- TODO 1(b)(i)-(v) Input text fields, 
+		OUCU shall have an ID "name", 
+		start time shall have and ID "start",
+		end time shall have an ID "end",
+		address shall have and ID "addr" -->
+		<div>
+			<label for="name">Your OUCU ID</label><br>
+			<input type="text" id="name" placeholder="e.g. abc123">
+		<div>
+		</div>
+			<label for="start">Start time</label><br>
+			<input type="time" id="start">
+		<div>
+		</div>
+			<label for="end">End time</label><br>
+			<input type="time" id="end">
+		<div>
+		</div>
+			<label for="addr">Pickup location</label><br>
+			<input type="text" id="addr">
+		</div>
+	</div>
+	<div data-role="controlgroup" data-type="horizontal">
+		<!-- TODO 1(b)(i)-(v) Function buttons:
+		(i) register (ii) volunteer (iii) request (iv) cancel (v) start / stop -->
+		<button id="register">Register</button>
+		<button id="volunteer">Volunteer</button>
+		<button id="Request">Request</button>
+		<button id="cancel">Cancel</button>
+		<button id="timer">Start/Stop</button>
+	</div>
+	</div>
+</body>
+
