@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+	<meta http-equiv="Content-Security-Policy">
+	<script type="text/javascript" src="cordova.js"></script>
+	<!-- jQuery -->
+	<link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css"> 
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
+	<script type="text/javascript" id="jqm-trans-disable"> 
+	/* For having a faster transition */
+	$(document).on("mobileinit", function() {
+		$.mobile.defaultPageTransition = "none";
+		$.mobile.defaultDialogTransition = "none";
+	});
+	</script>
+	<script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>        
+	<script type="text/javascript" src="js/index.js"></script>
+	<title>Taxi Sharing</title>
+	<style>
+	h1 { margin: 0 auto; }
+	.ui-controlgroup-controls { width: 100%; }
+	.ui-controlgroup-controls label { 
+		position: relative !important;
+		height: auto;
+		width: auto;
+		color: #3C78D6;
+	}
+	label[for="name"] + div { 
+		width: 8em; 
+	}
+	label[for="start"] + div,
+	label[for="end"] + div { 
+		width: 100%; 
+	}
+	</style>
+</head>
+<body>   
+	<div class="app">
+		<div class="ui-content">	
+			<h1>Taxi Sharing</h1>
+			<!-- TODO 1(c) Google Map canvas -->
+			<div data-role="controlgroup" data-type="horizontal">
+				<!-- TODO 1(b)(i)-(v) Input text fields, 
+				OUCU shall have an ID "name", 
+				start time shall have and ID "start",
+				end time shall have an ID "end",
+				address shall have and ID "addr" -->
+				<label for="name">Your OUCU ID</label>
+				<input type="text" id="name" placeholder="e.g. abc123">
+				<div style="width:48%; float:left;">
+					<label for="start">Start time</label>
+					<input type="time" id="start">
+				</div>
+				<div style="width:48%; float:right;">
+					<label for="end">End time</label>
+					<input type="time" step="60" id="end">
+				</div>
+				<div style="clear:both;">
+					<label for="addr">Pickup location</label>
+					<input type="text" id="addr">
+				</div>
+			</div>
+			<div data-role="controlgroup" data-type="horizontal">
+				<!-- TODO 1(b)(i)-(v) Function buttons:
+				(i) register (ii) volunteer (iii) request (iv) cancel (v) start / stop -->
+				<button id="register">Register</button>
+				<button id="volunteer">Volunteer</button>
+				<button id="Request">Request</button>
+			</div>
+			<div data-role="controlgroup" data-type="horizontal">
+				<button id="cancel">Cancel</button>
+				<button id="timer">Start/Stop</button>
+			</div>
+		</div>
+	</div>
+</body>
+
