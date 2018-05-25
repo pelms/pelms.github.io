@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<title>SRLText encoder</title>
+<style>
+* { font-family: Verdana }
+h1, h2 { font-family: Arial; font-weight: normal }
+div, p, li { margin-bottom: 1em }
+#input, #output { 
+	border: 1px solid #ccc; 
+	margin: 1em auto; 
+	padding: 	9.5px;
+	font-size: 	14px;
+	font-family: Consolas, monospace;
+	width: 60em;
+	height: 8em;	
+}
+#output { 
+	color: brown;
+	font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+#format, #clear { 
+	font-family: Arial;
+	font-size: 100%; 
+}
+.code {
+	font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+	color: brown;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	$('#output').on('click', function() {
+		this.select();
+	});
+
+	$('#format').click(function() {
+		var the_text = $('#input').val().trim();
+		the_text = the_text.replace(/</mg, "&lt;");
+		the_text = the_text.replace(/>/mg, "&gt;");
+		the_text = the_text.replace(/·/mg, "&#x00B7;");
+		the_text = the_text.replace(/{/mg, "&#x007B;");
+		the_text = the_text.replace(/}/mg, "&#x007D;");
+		$('#output').val(the_text);
+	});
+});
+</script>
+</head>
+
+<body>
+<h1>SRL Text encoder</h1>
+<p>HTML encodes characters: <span class="code">&lt; &gt; &#x00B7; &#x007B; &#x007D;</span>
+<form action="">
+	<div>
+		<label for="input">Paste SRL Text</label><br>
+		<textarea id="input" placeholder="Input..."></textarea>
+	</div>
+	<div>
+		<input type="button" id="format" value="Format">
+	</div>
+	<div>
+		<label for="output">Encoded string</label><br>
+		<textarea id="output" placeholder="Output..."></textarea>
+	</div>
+	<div>
+		<input type="reset" id="clear" value="Clear">
+	</div>
+</form>
+</body>
+</html>
