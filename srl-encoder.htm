@@ -34,11 +34,7 @@ div, p, li { margin-bottom: 1em }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
-$(document).ready(function() {
-	$('#output').on('click', function() {
-		this.select();
-	});
-
+$(document).ready(function() {	
 	$('#format').click(function() {
 		var the_text = $('#input').val().trim();
 		the_text = the_text.replace(/</mg, "&lt;");
@@ -46,7 +42,14 @@ $(document).ready(function() {
 		the_text = the_text.replace(/·/mg, "&#x00B7;");
 		the_text = the_text.replace(/{/mg, "&#x007B;");
 		the_text = the_text.replace(/}/mg, "&#x007D;");
+		if ( $('#add_code').is(':checked') ) {
+			the_text = '<code>' + the_text + '</code>';
+		} 
 		$('#output').val(the_text);
+	});
+
+	$('#output').on('click', function() {
+		this.select();
 	});
 });
 </script>
@@ -59,6 +62,9 @@ $(document).ready(function() {
 	<div>
 		<label for="input">Paste SRL Text</label><br>
 		<textarea id="input" placeholder="Input..."></textarea>
+	</div>
+	<div>
+		<input id="add_code" type="checkbox" checked><label for="add_code">Wrap in &lt;code&gt; element</label> 
 	</div>
 	<div>
 		<input type="button" id="format" value="Format">
