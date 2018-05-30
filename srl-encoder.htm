@@ -16,8 +16,8 @@ div, p, li { margin-bottom: 1em }
 	padding: 	9.5px;
 	font-size: 	14px;
 	font-family: Consolas, monospace;
-	width: 60em;
-	height: 8em;	
+	width: 50em;
+	height: 4em;	
 }
 #output { 
 	color: brown;
@@ -30,6 +30,7 @@ div, p, li { margin-bottom: 1em }
 .code {
 	font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 	color: brown;
+	background-color: #F8F1F4;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -71,14 +72,12 @@ $(document).ready(function() {
 		<input id="add_div" type="checkbox"> <label for="add_div">Wrap in &lt;div&gt; element</label> 
 	</div>
 	<div>
-		<input type="button" id="format" value="Format">
+		<input type="button" id="format" value="Format"> &nbsp;&nbsp;
+		<input type="reset" id="clear" value="Clear">
 	</div>
 	<div>
 		<label for="output">Encoded string</label><br>
 		<textarea id="output" placeholder="Output..."></textarea>
-	</div>
-	<div>
-		<input type="reset" id="clear" value="Clear">
 	</div>
 </form>
 </body>
