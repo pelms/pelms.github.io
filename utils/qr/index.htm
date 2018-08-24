@@ -53,7 +53,7 @@ function showResult() {
 
 function resetForm() {
 	if (window.confirm('Clear the form?')) {
-		document.getElementById('qr_code_img').src = '/library/info/qr/qr_blank.png';
+		document.getElementById('qr_code_img').src = '/utils/qr/qr_blank.png';
 		document.getElementById('qr_form').reset();
 		$('#url').text(url_hint);
 		
@@ -93,7 +93,7 @@ Log in with a Google account so that you can get usage statistics later</li>
   <h3>QR codes</h3>
   
 <figure>
-<img src="/library/info/qr/qr_blank.png" alt="" id="qr_code_img" name="qr_code_img" class="qr_code" />  
+<img src="/utils/qr/qr_blank.png" alt="" id="qr_code_img" name="qr_code_img" class="qr_code" />  
 <figcaption></figcaption>
 </figure>
 
