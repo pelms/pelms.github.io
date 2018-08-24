@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8" />
 <title>Convert web path to Digital Analytix path format</title>
-<meta name="team" content="Library IT Team" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="en_GB" />
 <meta name="author" content="Phil Elms" />
 <meta name="keywords" content="university west england bristol library services Digital Analytix path" />
 <meta name="description" content="Convert web path to comScore Digital Analytix path format" />
@@ -15,9 +13,10 @@
 #content form p { margin: auto auto 0.3em; visibility: visible }
 /*]]>*/
 </style>
+<link rel="stylesheet" href="css/style.css">
+</head>
 
-<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
-
+<body>
 <script type="text/javascript">
 //<![CDATA[
 function showResult() {
@@ -51,11 +50,7 @@ function trimWhitespace (str) {
 
 <main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
 <div id="allowNav">
-<ul id="breadcrumb">
-	<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
-	<li><a href="/library/"> Library</a> / </li>
-	<li><a href=".">Utilities</a></li>
-</ul>
+
 <div id="content"> 
 
 <h1>Convert web path to comScore Digital Analytix path format</h1>
@@ -72,11 +67,11 @@ function trimWhitespace (str) {
 <br /><br />
 <h2>Digital Analytix path</h2>
 <p>
-  <textarea name="analytix_path" id="analytix_path" cols="100" rows="2" wrap="soft" onclick="this.focus(); this.select();"></textarea>
+ <textarea name="analytix_path" id="analytix_path" cols="100" rows="2" wrap="soft" onclick="this.focus(); this.select();"></textarea>
 </p>
 <h2>Path of folder</h2>
 <p>
-  <textarea name="analytix_folder" id="analytix_folder" cols="100" rows="2" wrap="soft" onclick="this.focus(); this.select();"></textarea>
+ <textarea name="analytix_folder" id="analytix_folder" cols="100" rows="2" wrap="soft" onclick="this.focus(); this.select();"></textarea>
 </p>
 </form>
 
@@ -85,7 +80,7 @@ function trimWhitespace (str) {
 </div><!-- /#content -->
 <aside class="m-block no-print"></aside>
 </div><!-- /#allowNav -->
-<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+</body>
 
 </body>
 </html>

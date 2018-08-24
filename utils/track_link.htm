@@ -1,19 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8" />
 <title>Generate a Link with Analytics</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta http-equiv="Content-Language" content="en_GB" />
 <meta name="author" content="Phil Elms" />
-<meta name="team" content="Library IT Team" />
-<meta name="keywords" content="university west england bristol library services" />
 <meta name="description" content="Generate a Link with Analytics" />
 <style type="text/css">
 p.highlight { color: #D90000; font-family: Consolas, "Courier New", monospace; font-size: larger; }
 </style>
+<link rel="stylesheet" href="css/style.css">
+</head>
 
-<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
-
+<body>
 <script type="text/javascript">
 function showResult() {
 	var url = $('#url').val().trim();
@@ -31,30 +29,26 @@ function showResult() {
 
 <main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
 <div id="allowNav">
-<ul id="breadcrumb">
-	<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
-	<li><a href="/library/"> Library</a> / </li>
-	<li><a href=".">Utilities</a></li>
-</ul>
+
 <div id="content"> 
 
-<h1>Generate a  Link with Analytics</h1>
+<h1>Generate a Link with Analytics</h1>
 
 <div id="leftcol">
 
 <p>These links will go to a UWE page which will triger an 'event' in Google Analytics before redirecting.</p>
 
 <form method="get" action="encode-url.htm" id="del_form">
-  <textarea name="url" id="url" cols="100" rows="3" onfocus="if (this.value=='&nbsp;Enter URL...') this.value=''">&nbsp;Enter URL...</textarea>
-  <br />
-  <input type="button" value="Generate" onclick="showResult();" />
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="Reset" type="reset" id="Reset" value="Clear" />
-  <br />
-  <br />
-  <h2>URL with analytics</h2>
-  <p><a id="redirect_link" href="#" target="_blank">Test the link</a> (not included in analytics)</p>
-  <textarea name="redirect_url" cols="100" rows="4" id="redirect_url" onclick="this.focus(); this.select();"></textarea>
+ <textarea name="url" id="url" cols="100" rows="3" onfocus="if (this.value=='&nbsp;Enter URL...') this.value=''">&nbsp;Enter URL...</textarea>
+ <br />
+ <input type="button" value="Generate" onclick="showResult();" />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <input name="Reset" type="reset" id="Reset" value="Clear" />
+ <br />
+ <br />
+ <h2>URL with analytics</h2>
+ <p><a id="redirect_link" href="#" target="_blank">Test the link</a> (not included in analytics)</p>
+ <textarea name="redirect_url" cols="100" rows="4" id="redirect_url" onclick="this.focus(); this.select();"></textarea>
 </form>
 
 </div>
@@ -62,7 +56,7 @@ function showResult() {
 </div><!-- /#content -->
 <aside class="m-block no-print"></aside>
 </div><!-- /#allowNav -->
-<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+</body>
 
 </body>
 </html>

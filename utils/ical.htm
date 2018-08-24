@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8" />
 <title>'Add to calendar' Link Generator</title>
-<meta name="team" content="Library IT Team" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="en_GB" />
 <meta name="author" content="Phil Elms" />
 <meta name="keywords" content="university west england bristol library services URL Encoder" />
 <meta name="description" content="'Add to calendar' link Generator" />
@@ -23,7 +21,7 @@ function formatTime(time_str) {	// Remove colon separator
 }
 function formatTextInput(text_str) {
 	text_str = encodeURIComponent(text_str);
-	text_str = text_str.replace(/'/ig, "%27"); // This doesn't work, get  \'
+	text_str = text_str.replace(/'/ig, "%27"); // This doesn't work, get \'
 	return text_str;
 }
 function buildLink() {
@@ -51,25 +49,22 @@ function buildLink() {
 
 <link type="text/css" href="/library/includes/jquery/ui/css/smoothness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
 <link type="text/css" href="/library/includes/jquery/ui/css/jquery.ui.timepicker.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css">
+</head>
 
-<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+<body>
 
 <script type="text/javascript" src="/library/includes/jquery/ui/js/jquery-ui-1.8.19.custom.min.js"></script>
 <script type="text/javascript" src="/library/includes/jquery/ui/js/jquery.ui.timepicker.js"></script>
 
 <main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
 <div id="allowNav">
-<ul id="breadcrumb">
-	<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
-	<li><a href="/library/"> Library</a> / </li>
-	<li><a href=".">Utilities</a></li>
-</ul>
+
 <div id="content"> 
 
 <h1>'Add to calendar' Link Generator</h1>
 
 <div id="leftcol">
-
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#start_date").datepicker({ 
@@ -105,46 +100,46 @@ $(document).ready(function() {
 	});	
 	$('#ical_form input[type="reset"]').click(function(){
 		$("a#test_link").attr('href', '#');
-    });
+ });
 
 });	
 </script>
 
 <form id="ical_form" name="ical_form" method="post" action="">
-    <table width="90%" border="1" cellspacing="0" cellpadding="6">
-        <tr>
-            <td><div align="right"><label for="subject">Subject</label></div></td>
-            <td><input type="text" name="subject" id="subject" /></td>
-        </tr>
-        <tr>
-            <td><div align="right"><label for="Location">Location</label></div></td>
-            <td><input type="text" name="location" id="location" /></td>
-        </tr>
-        <tr>
-            <td><div align="right">Start</div></td>
-            <td><label><input type="text" name="start_date" id="start_date" /> Date</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <label><input type="text" name="start_time" id="start_time" /> Time</label>            </td>
-        </tr>
-        <tr>
-            <td><div align="right">End</div></td>
-            <td><label><input type="text" name="end_date" id="end_date" /> Date</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <label><input type="text" name="end_time" id="end_time" /> Time</label>            </td>
-        </tr>
-        <tr>
-            <td><div align="right"><label for="description">Description</label></div></td>
-            <td><textarea name="description" id="description" cols="45" rows="5"></textarea></td>
-        </tr>
-        <tr>
-            <td><div align="right"></div></td>
-            <td><input type="button" name="build_link" id="build_link" value="Build link" onclick="buildLink()" />
-            &nbsp;&nbsp;&nbsp;
-            <input type="reset" name="reset" id="reset" value="Reset" /></td>
-        </tr>
-        <tr>
-            <td><div align="right"><a id="test_link" href="#">Test the link</a></div></td>
-            <td><textarea name="ical_link" id="ical_link" cols="60" rows="3" onclick="this.focus(); this.select();"></textarea></td>
-        </tr>
-     </table>
+ <table width="90%" border="1" cellspacing="0" cellpadding="6">
+ <tr>
+ <td><div align="right"><label for="subject">Subject</label></div></td>
+ <td><input type="text" name="subject" id="subject" /></td>
+ </tr>
+ <tr>
+ <td><div align="right"><label for="Location">Location</label></div></td>
+ <td><input type="text" name="location" id="location" /></td>
+ </tr>
+ <tr>
+ <td><div align="right">Start</div></td>
+ <td><label><input type="text" name="start_date" id="start_date" /> Date</label>&nbsp;&nbsp;&nbsp;&nbsp;
+ <label><input type="text" name="start_time" id="start_time" /> Time</label> </td>
+ </tr>
+ <tr>
+ <td><div align="right">End</div></td>
+ <td><label><input type="text" name="end_date" id="end_date" /> Date</label>&nbsp;&nbsp;&nbsp;&nbsp;
+ <label><input type="text" name="end_time" id="end_time" /> Time</label> </td>
+ </tr>
+ <tr>
+ <td><div align="right"><label for="description">Description</label></div></td>
+ <td><textarea name="description" id="description" cols="45" rows="5"></textarea></td>
+ </tr>
+ <tr>
+ <td><div align="right"></div></td>
+ <td><input type="button" name="build_link" id="build_link" value="Build link" onclick="buildLink()" />
+ &nbsp;&nbsp;&nbsp;
+ <input type="reset" name="reset" id="reset" value="Reset" /></td>
+ </tr>
+ <tr>
+ <td><div align="right"><a id="test_link" href="#">Test the link</a></div></td>
+ <td><textarea name="ical_link" id="ical_link" cols="60" rows="3" onclick="this.focus(); this.select();"></textarea></td>
+ </tr>
+ </table>
 <input type="hidden" name="s_date" id="s_date" />
 <input type="hidden" name="s_time" id="s_time" />
 <input type="hidden" name="e_date" id="e_date" />
@@ -157,7 +152,7 @@ $(document).ready(function() {
 </div><!-- /#content -->
 <aside class="m-block no-print"></aside>
 </div><!-- /#allowNav -->
-<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+</body>
 
 </body>
 </html>

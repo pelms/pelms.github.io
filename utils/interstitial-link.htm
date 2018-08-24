@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8" />
 <title>Create An Interstitial Page Link</title>
-<meta name="team" content="Library IT Team" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="en_GB" />
 <meta name="author" content="Phil Elms" />
 <meta name="keywords" content="university west england bristol library services URL Encoder" />
 <meta name="description" content="URL Encoder" />
@@ -15,9 +13,10 @@
 #content form p { margin: auto auto 0.3em; visibility: visible }
 /*]]>*/
 </style>
+<link rel="stylesheet" href="css/style.css">
+</head>
 
-<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
-
+<body>
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function() {
@@ -66,14 +65,11 @@ function trimWhitespace (str) {
 
 <main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
 <div id="allowNav">
-	<ul id="breadcrumb">
-		<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
-		<li><a href="/library/"> Library</a> / </li>
-		<li><a href=".">Utilities</a></li>
-	</ul>  
+	
+ 
 <div id="content"> 
 
-<h1>Create An Interstitial  Page Link</h1>
+<h1>Create An Interstitial Page Link</h1>
 
 <div id="leftcol">
 
@@ -81,20 +77,20 @@ function trimWhitespace (str) {
 <h2>Resource URL</h2>
 <form method="get" action="encode-url.htm">
 <p>
-  <textarea name="url" id="url" cols="100" rows="2" wrap="soft" onfocus="if (this.value=='Enter resource URL...') this.value=''" onblur="if (this.value=='') this.value='Enter resource URL...'">Enter resource URL...</textarea>
+ <textarea name="url" id="url" cols="100" rows="2" wrap="soft" onfocus="if (this.value=='Enter resource URL...') this.value=''" onblur="if (this.value=='') this.value='Enter resource URL...'">Enter resource URL...</textarea>
 </p>
 <p>
-  <input type="radio" name="res_type" id="radio_database" value="database" checked="checked" /><label for="radio_database">Database</label>
-  <br />
-  <input type="radio" name="res_type" id="radio_journal" value="journal" /><label for="radio_journal">Journal</label>
-  <br />
-  <input type="radio" name="res_type" id="radio_book" value="book" /><label for="radio_book">Book</label>
+ <input type="radio" name="res_type" id="radio_database" value="database" checked="checked" /><label for="radio_database">Database</label>
+ <br />
+ <input type="radio" name="res_type" id="radio_journal" value="journal" /><label for="radio_journal">Journal</label>
+ <br />
+ <input type="radio" name="res_type" id="radio_book" value="book" /><label for="radio_book">Book</label>
 </p>
 <p>&nbsp;</p>
 <p>
-  <input type="button" value="Build link" onclick="showResult();" />
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input name="Reset" type="reset" value="Reset" onclick="initForm(); return true" />
+ <input type="button" value="Build link" onclick="showResult();" />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <input name="Reset" type="reset" value="Reset" onclick="initForm(); return true" />
 </p>
 <h2>Link to interstitial page <span id="test_span"> - <a id="test_link" href="#" target="_blank">Test the link</a></span></h2>
 <textarea name="page_link" cols="100" rows="2" wrap="soft" id="page_link" onclick="this.focus(); this.select();"></textarea>
@@ -105,7 +101,7 @@ function trimWhitespace (str) {
 </div><!-- /#content -->
 <aside class="m-block no-print"></aside>
 </div><!-- /#allowNav -->
-<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+</body>
 
 </body>
 </html>

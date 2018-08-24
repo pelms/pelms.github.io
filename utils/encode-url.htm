@@ -1,20 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8" />
 <title>URL Encoder</title>
-<meta name="team" content="Library IT Team" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="en_GB" />
 <meta name="author" content="Phil Elms" />
-<meta name="keywords" content="university west england bristol library services URL Encoder" />
 <meta name="description" content="URL Encoder" />
-<style type="text/css">
-/*<![CDATA[*/
+<style>
 #content textarea { margin: 0 auto 1em; }
 #content form p { margin: auto auto 0.3em; }
 #content code { font-size: 120%; color: #090 }
-/*]]>*/
 </style>
 <script type="text/javascript">
 //<![CDATA[
@@ -36,8 +30,8 @@ function showResult() {
 	document.getElementById('ezproxy').value = ez_url;
 	document.getElementById('ezproxy_link').href = ez_url;
 
-    /*
-    // Athens URLs
+ /*
+ // Athens URLs
 	var athens_redirect_prefix = 'https://athensda.uwe.ac.uk/?redirect=';
 	var athens_redirect_url = athens_redirect_prefix + encoded_url;
 	document.getElementById('athens_redirect').value = athens_redirect_url;
@@ -47,7 +41,7 @@ function showResult() {
 	var athens_cookie_url = athens_cookie_prefix + encoded_url;
 	document.getElementById('athens_cookie').value = athens_cookie_url;
 	document.getElementById('athens_cookie_link').href = athens_cookie_url; 
-    */
+ */
 
 }
 function trimWhitespace (str) {
@@ -59,23 +53,20 @@ function trimWhitespace (str) {
 }
 //]]>
 </script>
+<link rel="stylesheet" href="css/style.css">
+</head>
 
-<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+<body>
 <main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
 <div id="allowNav">
-	<ul id="breadcrumb">
-		<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
-		<li><a href="/library/"> Library</a> / </li>
-		<li><a href=".">Utilities</a></li>
-	</ul>  
-</ul>
+
 <div id="content"> 
 
 <h1>URL Encoder</h1>
 
 <div id="leftcol">
 
-<p>The following characters are encoded:&nbsp;&nbsp;&nbsp;  <code>% : ; / \ ,  ? = # &amp; + $  ' &quot; (space) </code></p>
+<p>The following characters are encoded:&nbsp;&nbsp;&nbsp; <code>% : ; / \ , ? = # &amp; + $ ' &quot; (space) </code></p>
 <p><strong>See also: </strong><a href="decode-url.htm">URL DEcoder</a>.</p>
 <form method="get" action="encode-url.htm">
 <textarea name="url" id="url" cols="100" rows="2" wrap="soft" onfocus="if (this.value=='&nbsp;Enter URL...') this.value=''"> Enter URL...</textarea>
@@ -90,8 +81,8 @@ function trimWhitespace (str) {
 <h3>EZProxy URL - <a id="ezproxy_link" href="#" target="_blank">Test</a></h3>
 <p><textarea name="ezproxy" cols="100" rows="2" wrap="soft" id="ezproxy" onclick="this.focus(); this.select();"></textarea></p>
 
-    
-<!--    
+ 
+<!-- 
 <h3>Athens URLs</h3>
 <h4>Redirect (<a id="athens_redirect_link" href="#" target="_blank">Test</a>)</h4>
 <textarea name="athens_redirect" cols="100" rows="2" wrap="soft" id="athens_redirect" onclick="this.focus(); this.select();"></textarea>
@@ -107,7 +98,7 @@ function trimWhitespace (str) {
 </div><!-- /#content -->
 <aside class="m-block no-print"></aside>
 </div><!-- /#allowNav -->
-<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+</body>
 
 </body>
 </html>

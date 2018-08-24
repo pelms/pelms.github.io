@@ -1,15 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8" />
 <title>URL Encoder</title>
-<meta name="team" content="Library IT Team" />
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta http-equiv="Content-Language" content="en_GB" />
 <meta name="author" content="Phil Elms" />
 <meta name="keywords" content="university west england bristol library services URL Encoder" />
 <meta name="description" content="URL Encoder" />
-<!--  Add any css styles specific to this page here  -->
+<!-- Add any css styles specific to this page here -->
 <style type="text/css">
 /*<![CDATA[*/
 #content textarea { margin: 0 auto 1em; }
@@ -32,15 +29,14 @@ function buildURL() {
 //-->
 //]]>
 </script>
+<link rel="stylesheet" href="css/style.css">
+</head>
 
-<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+<body>
 <main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
 <div id="allowNav">
-	<ul id="breadcrumb">
-		<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
-		<li><a href="/library/"> Library</a> / </li>
-		<li><a href=".">Utilities</a></li>
-	</ul>  
+	
+ 
 <div id="content"> 
 
 <h1>Catalogue Search Link Generator</h1>
@@ -48,9 +44,9 @@ function buildURL() {
 <div id="leftcol">
 
 <form action="Javascript:buildURL()">
-  <h2>Journal title</h2>
-  <p>
-  <input name="Journal_title" type="text" id="Journal_title" onfocus="if (this.value=='Enter journal title...') this.value=''" value="Enter journal title..." size="100" />
+ <h2>Journal title</h2>
+ <p>
+ <input name="Journal_title" type="text" id="Journal_title" onfocus="if (this.value=='Enter journal title...') this.value=''" value="Enter journal title..." size="100" />
 </p>
 <p>
 <input name="Button" type="button" onclick="buildURL();" value="Encode" />
@@ -67,7 +63,7 @@ function buildURL() {
 </div><!-- /#content -->
 <aside class="m-block no-print"></aside>
 </div><!-- /#allowNav -->
-<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+</body>
 
 </body>
 </html>

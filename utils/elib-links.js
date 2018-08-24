@@ -19,7 +19,7 @@ function resourceUrl(type) {
 			} else {
 				if (/^https:\/\/elibrary\.uwe\.ac\.uk\/V\/\w{50}-\d{5}\?func=native-link&resource=(UWE\d{5})$/i.test(pasted_url)) {
 					// Successful match
-					document.getElementById('resource').options[0].selected = true;  // Set dropdown to index [0];
+					document.getElementById('resource').options[0].selected = true; // Set dropdown to index [0];
 					selected_text = 'Link';
 					selected_value = pasted_url.replace(/^https:\/\/elibrary\.uwe\.ac\.uk\/V\/\w{50}-\d{5}\?func=native-link&resource=(UWE\d{5})$/g, "$1");
 					resource_link = elib_prefix + res_string + selected_value;
@@ -57,10 +57,10 @@ function searchResUrl(type) {
 			if (pasted_title == '') {
 				return false;
 			} else {
-				document.getElementById('searchRes').options[0].selected = true;  // Set dropdown to index [0];
+				document.getElementById('searchRes').options[0].selected = true; // Set dropdown to index [0];
 				selected_text = 'Link';
-				pasted_title = pasted_title.replace(/^[ \t]+/ig, "");  // strip leading spaces
-				pasted_title = pasted_title.replace(/[ \t]+$/ig, "");  // strip trailing spaces
+				pasted_title = pasted_title.replace(/^[ \t]+/ig, ""); // strip leading spaces
+				pasted_title = pasted_title.replace(/[ \t]+$/ig, ""); // strip trailing spaces
 				resource_link = elib_prefix + search_string + pasted_title;
 			}
 		}
