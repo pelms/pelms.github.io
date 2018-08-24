@@ -53,7 +53,7 @@ class GoogleUrlApi {
 }
 
 // Create instance with key
-$key = 'AIzaSyDAM0m5R9Qnnn0NNEttRdSrEgnjFdvx9Kg';
+$key = 'look_me_up_in_keepass';
 $googer = new GoogleURLAPI($key);
 
 // Test: Shorten a URL
