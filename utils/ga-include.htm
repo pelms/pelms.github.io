@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>UWE Library Services: Google Analytics Inclusion</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="team" content="Library IT Team" />
+<meta name="keywords" content="university west england bristol library services" />
+<meta name="description" content="Removes the cookie which excludes user from Google Analytics statistics" />
+<script type="text/javascript">
+function setCookie(sName, sValue, oExpires, sPath, sDomain, bSecure) { 
+	var sCookie = sName + "=" + encodeURIComponent(sValue); 
+	if (oExpires) { 
+		sCookie += "; expires=" + oExpires.toGMTString(); 
+	} 
+	if (sPath) { 
+		sCookie += "; path=" + sPath; 
+	} 
+	if (sDomain) { 
+		sCookie += "; domain=" + sDomain; 
+	} 
+	if (bSecure) { 
+		sCookie += "; secure"; 
+	} 
+	document.cookie = sCookie; 
+}
+</script>
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+<ul id="breadcrumb">
+	<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+	<li><a href="/library/"> Library</a> / </li>
+	<li><a href=".">Utilities</a></li>
+</ul>
+<div id="content"> 
+
+<h1>Google Analytics Inclusion</h1>
+
+<div id="leftcol">
+
+<p><strong>You will now be included in UWE Google Analytics statistics.</strong></p>
+<p>The exclusion cookie has been removed from your browser.</p>
+<p><a href="ga-exclude.htm">Exclude this browser from UWE Google Analytics statistics</a>. </p>
+
+<script type="text/javascript">
+setCookie('__utmv', '', new Date(0), '/', '.uwe.ac.uk');
+</script>
+
+</div>
+<div class="clearfix"></div>
+
+</div><!-- /#content -->
+
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>

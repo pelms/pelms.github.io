@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Convert web path to Digital Analytix path format</title>
+<meta name="team" content="Library IT Team" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="keywords" content="university west england bristol library services Digital Analytix path" />
+<meta name="description" content="Convert web path to comScore Digital Analytix path format" />
+<style type="text/css">
+/*<![CDATA[*/
+#content textarea { margin: 0 auto 1em; }
+#content form p { margin: auto auto 0.3em; visibility: visible }
+/*]]>*/
+</style>
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+
+<script type="text/javascript">
+//<![CDATA[
+function showResult() {
+	var path_val = $('#web_path').val();
+	path_val = trimWhitespace(path_val);
+	// Remove protocol, host and domain 
+	path_val = path_val.replace(/https?:\/\/[\w]*\.uwe\.ac\.uk\/(.*)/mg, "$1");
+	// Replace file extension
+	path_val = path_val.replace(/\.[\w]+$/mg, ".page");
+	// Replace '/' with '.'
+	path_val = path_val.replace(/\//mg, ".");
+	// Replace '[space]', '+' or '%20' with '_'
+	path_val = path_val.replace(/%20|\+| /g, "_");
+	// Remove any training '.'
+	path_val = path_val.replace(/\.$/mg, "");
+	var folder_val = path_val;
+	folder_val = folder_val.replace(/(.+)\.[^\.]+\.page+$/img, "$1");
+	// Display result
+	$("#analytix_path").val(path_val);
+	$("#analytix_folder").val(folder_val + '.');
+}
+function trimWhitespace (str) {
+	var	str = str.replace(/^\s\s*/, ''),
+		ws = /\s/,
+		i = str.length;
+	while (ws.test(str.charAt(--i)));
+	return str.slice(0, i + 1);
+}
+//]]>
+</script>
+
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+<ul id="breadcrumb">
+	<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+	<li><a href="/library/"> Library</a> / </li>
+	<li><a href=".">Utilities</a></li>
+</ul>
+<div id="content"> 
+
+<h1>Convert web path to comScore Digital Analytix path format</h1>
+
+<div id="leftcol">
+
+<h2>Web path</h2>
+<form method="get" action="comscore-path.htm">
+<textarea name="path" id="web_path" cols="100" rows="2" wrap="soft" onfocus="if (this.value=='&nbsp;Enter web path...') this.value=''" onblur="if (this.value=='') this.value='&nbsp;Enter web path...'"> Enter web path...</textarea>
+<br />
+<input type="button" value="Convert link" onclick="showResult();" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input name="Reset" type="reset" value="Reset" onclick="initForm(); return true" />
+<br /><br />
+<h2>Digital Analytix path</h2>
+<p>
+  <textarea name="analytix_path" id="analytix_path" cols="100" rows="2" wrap="soft" onclick="this.focus(); this.select();"></textarea>
+</p>
+<h2>Path of folder</h2>
+<p>
+  <textarea name="analytix_folder" id="analytix_folder" cols="100" rows="2" wrap="soft" onclick="this.focus(); this.select();"></textarea>
+</p>
+</form>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>

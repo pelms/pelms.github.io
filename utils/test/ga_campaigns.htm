@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>UWE Library Services: Campaign Tracking Link Generator</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="team" content="Library IT Team" />
+<meta name="keywords" content="university west england bristol library services" />
+<meta name="description" content="Google Analytics Campaign Tracking Link Generator" />
+<script type="text/javascript">
+function createUrl() {
+	
+}
+</script>
+<!--  Add any css styles specific to this page here  -->
+<style type="text/css">
+#content label { font-weight: bold }
+#content label:hover { color: #f00 }
+</style>
+
+<!--#include virtual="/library/intranet/includes/int_header.htm" -->
+<h1> Campaign Tracking Link Generator</h1>
+<form id="search_res_form" name="search_res_form" method="get" action="" class="border-lt">
+    <table width="90%" border="0" cellspacing="0" cellpadding="4">
+        <tr>
+            <td colspan="2"><p>
+                <label for="base_url">Your link</label>
+            </p>
+            <p>
+                <input name="base_url" type="text" id="base_url" size="100" />
+            </p></td>
+        </tr>
+        <tr>
+            <td><p>
+                <label for="utm_source">Source</label>
+            </p>
+            <p>e.g. 'Glenside blog', 'student email', 'library newsletter'</p></td>
+            <td><input type="text" name="utm_source" id="utm_source" /></td>
+        </tr>
+        <tr>
+            <td><p>
+                <label for="utm_medium">Medium</label>
+            </p>
+            <p>e.g. 'email', 'blog', 'uwe news snippet', 'print' *</p></td>
+            <td><input type="text" name="utm_medium" id="utm_medium" /></td>
+        </tr>
+        <tr>
+            <td><p>
+                <label for="utm_campaign">Name</label>
+            </p>
+            <p>e.g. </p></td>
+            <td><input type="text" name="utm_campaign" id="utm_campaign" /></td>
+        </tr>
+    </table>
+    <p>
+        <input type="button" name="encode2" id="encode2" value="Create URL" onclick="createUrl()" />
+        &nbsp;&nbsp;
+        <input type="reset" name="clear2" id="clear2" value="Clear" />
+    </p>
+    <p><br />
+            <strong>Test the link:</strong> <a id="searchResLink" target="_blank" style="cursor:pointer" href="#"></a> <br />
+    </p>
+    <p>
+        <textarea name="searchResURL" id="searchResURL" cols="70" rows="3" onclick="this.focus(); this.select();"></textarea>
+    </p>
+</form>
+<p>&nbsp;</p>
+<!--#include virtual="/library/intranet/includes/int_foot.htm" -->
+</html>

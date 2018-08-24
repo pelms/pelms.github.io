@@ -1,0 +1,1 @@
+document.write("<a href='/library/'>Library</a> / <a href='/library/intranet/'>Intranet</a> / <a href='../../'>IT</a> / <a href='../'>Utilities</a> / QR codes");

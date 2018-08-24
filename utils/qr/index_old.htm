@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Build a QR Code</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="team" content="Library IT Team" />
+<meta name="keywords" content="university west england bristol library services" />
+<meta name="description" content="Build a QR Code" />
+
+<style type="text/css">
+img.qr_code{ border: 1px dotted #999 }
+figure { margin: 0 0 1em }
+#custom_size_div { margin: 0 0 1.5em }
+</style>
+
+<!--#include virtual="/library/intranet/includes/int_header.htm" -->
+<script type="text/javascript">
+$(document).ready(function() {
+	url_hint = ' Enter URL...';
+	$('#url').val(url_hint);
+	$('#custom_size_div').hide();
+	$('input[name="qr_size"]').click(function() {
+		if ( $('#qr_size_custom').is(':checked') ) {
+			$('#custom_size_div').show('medium');
+		} else {
+			$('#custom_size_div').hide('medium');
+		}
+	});
+});
+function showResult() {
+	var url = document.getElementById('url').value;
+	var campus = document.getElementById('campus').value;
+	var short_url = document.getElementById('short_url').value;
+	if (short_url) { 
+		// Generate QR code from shortened URL	
+		url = short_url;
+		url = jQuery.trim(url);
+	}	
+	else {
+		if ( url != ' Enter URL...' ) {  
+			url = jQuery.trim(url);
+			if (campus == "") {
+				url = 'http://www.uwe.ac.uk/library/info/qr/?url=' + encodeURIComponent(url);
+			}
+			else {
+				url = 'http://www.uwe.ac.uk/library/info/qr/?url=' + encodeURIComponent(url) + '&campus=' + campus;
+			}
+			// Redirect URL
+			document.getElementById('redirect_url').value = url;
+			document.getElementById('redirect_link').href = url;
+		}
+	}
+	
+	// QR codes
+	if ( url != ' Enter URL...' ) {
+		var qr_size = '0';
+		// Get requested size
+		qr_size = $('input[name="qr_size"]:checked').val();
+		if ( qr_size == 'custom' ) {
+			qr_size = $('#custom_size').val();
+		} 	
+		var prefix = 'https://chart.googleapis.com/chart?cht=qr&chs=' + qr_size + 'x' + qr_size + '&chl=';
+		if ( (qr_size > 547) || (qr_size < 37) ) {
+			alert('Please choose a size between 37 and 547 pixels');
+		} else {
+			// Display the QR code
+			document.getElementById('qr_code_img').src = prefix + url;
+			$('figcaption').text(qr_size + ' pixels');
+		}
+		
+	}
+}
+
+function resetForm() {
+	if (window.confirm('Clear the form?')) {
+		document.getElementById('qr_code_img').src = '/library/info/qr/qr_blank.png';
+		document.getElementById('qr_form').reset();
+		document.getElementById('url').value = url_hint;
+		
+	}
+}
+
+//]]>
+</script>
+
+<h1>Build a QR Code.</h1>
+<form method="get" action="encode-url.htm" id="qr_form">
+  <p>
+      <textarea name="url" id="url" cols="100" rows="2" onfocus="if (this.value == url_hint) this.value=''" onblur="if (this.value == '') this.value = url_hint"></textarea>
+      <br />
+  </p>
+  <p><label for="campus">Select campus</label> (optional) 
+      <select name="campus" id="campus">
+          <option value="ALL" selected="selected">All</option>
+          <option value="AW">Alex Warehouse</option>
+          <option value="BA">Bower Ashton</option>
+          <option value="FR">Frenchay</option>
+          <option value="GL">Glenside</option>
+          <option value="SM">St Matthias</option>
+          <option value="">None</option>
+      </select>
+  </p>
+  <p>
+      <input type="button" value="Generate" onclick="showResult();" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input name="Reset" type="button" id="Reset" onclick="resetForm()" value="Clear" />
+      <br />
+      <br />
+  </p>
+  <h2 style="margin:0">Results</h2>
+
+  <h3>URL with analytics - <a id="redirect_link" href="" target="_blank">Test</a></h3>
+  <p>
+    <textarea name="redirect_url" cols="100" rows="2" id="redirect_url" onclick="this.focus(); this.select();"></textarea>
+  </p>
+  <h2>URL shortener</h2>
+  <ul>
+    <li><a href="http://go.uwe.ac.uk/" target="_blank"><strong>go.uwe.ac.uk</strong></a></li>
+    <li><a href="http://goo.gl/" target="_blank"><strong>goo.gl</strong></a></li>
+  </ul>
+  <h3>Enter shortened URL</h3>
+  <p>
+    <textarea name="short_url" id="short_url" cols="100" rows="2"></textarea>
+  </p>
+  <h3>Size</h3>
+  <p>
+<input type="hidden" name="qr_code_size" id="qr_code_size" value="" />
+<input name="qr_size" type="radio" id="qr_size_200" value="200" checked="checked" /><label for="qr_size_200">200px</label><br />
+<input name="qr_size" type="radio" id="qr_size_300" value="300" /><label for="qr_size_300">300px</label><br />
+<input type="radio" name="qr_size" id="qr_size_500" value="500" /><label for="qr_size_500">500px</label><br />
+<input type="radio" name="qr_size" id="qr_size_custom" value="custom" /><label for="qr_size_custom">Custom</label>
+  </p>
+  <div id="custom_size_div">
+    <label for="custom_size">Size in pixels</label>
+    <input name="custom_size" type="text" id="custom_size" size="5" />
+    <span style="font-size:smaller; color:green">(between 37 and 547)</span>
+  </div>
+  <p>
+    <input type="button" value="Show QR code" onclick="showResult();" />
+  </p>
+  <h3>QR codes</h3>
+  
+<figure>
+<img src="/library/info/qr/qr_blank.png" alt="" id="qr_code_img" name="qr_code_img" class="qr_code" />  
+<figcaption></figcaption>
+</figure>
+
+ 
+</form>
+
+<!--#include virtual="/library/intranet/includes/int_foot.htm" -->
+</html>

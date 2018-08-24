@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>UWE Library Services: Google Analytics Exclusion</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="team" content="Library IT Team" />
+<meta name="keywords" content="university west england bristol library services" />
+<meta name="description" content="Sets a cookie to exclude user from Google Analytics statistics" />
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+<ul id="breadcrumb">
+	<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+	<li><a href="/library/"> Library</a> / </li>
+	<li><a href=".">Utilities</a></li>
+</ul>
+<div id="content"> 
+
+<h1>Google Analytics Exclusion</h1>
+
+<div id="leftcol">
+
+<p><strong>You are now excluded from UWE Google Analytics statistics using this browser.</strong></p>
+<p>A cookie has been set which will exclude your visits  from Library web pages stats.</p>
+<p><strong>N.B.</strong> The cookie is set per user, per computer, per browser, so another user on this computer or you using a different browser or computer will not be excluded.</p>
+<p><a href="ga-include.htm">Remove the exclusion cookie</a>. </p>
+
+
+<script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+if (/uwe_web_editor/i.test(document.cookie)) { 
+	alert('You are already excluded');
+} else {
+	try {
+	var pageTracker = _gat._getTracker("UA-651638-4");
+	pageTracker._setVar('uwe_web_editor');
+	} catch(err) {}
+}
+</script>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>URL Encoder</title>
+<meta name="team" content="Library IT Team" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="keywords" content="university west england bristol library services URL Encoder" />
+<meta name="description" content="URL Encoder" />
+<style type="text/css">
+/*<![CDATA[*/
+#content textarea { margin: 0 auto 1em; }
+#content form p { margin: auto auto 0.3em; }
+#content code { font-size: 120%; color: #090 }
+/*]]>*/
+</style>
+<script type="text/javascript">
+//<![CDATA[
+function showResult() {
+	var url = trimWhitespace(document.getElementById('url').value);
+	document.getElementById('url').value = url;
+	var encoded_url = encodeURIComponent(url);
+
+	// Encoded URL
+	document.getElementById('encoded-url').value = encoded_url;
+
+	// EZProxy URL
+	if (/^https:/im.test(url)) {
+		var ez_prefix = 'https://login.ezproxy.uwe.ac.uk/login?url=';
+	} else {
+		var ez_prefix = 'http://ezproxy.uwe.ac.uk/login?url=';
+	}	
+	var ez_url = ez_prefix + url;
+	document.getElementById('ezproxy').value = ez_url;
+	document.getElementById('ezproxy_link').href = ez_url;
+
+    /*
+    // Athens URLs
+	var athens_redirect_prefix = 'https://athensda.uwe.ac.uk/?redirect=';
+	var athens_redirect_url = athens_redirect_prefix + encoded_url;
+	document.getElementById('athens_redirect').value = athens_redirect_url;
+	document.getElementById('athens_redirect_link').href = athens_redirect_url;
+
+	var athens_cookie_prefix = 'http://auth.athensams.net/setorg.php?id=urn:mace:eduserv.org.uk:athens:provider:uwe.ac.uk&ath_returl=';
+	var athens_cookie_url = athens_cookie_prefix + encoded_url;
+	document.getElementById('athens_cookie').value = athens_cookie_url;
+	document.getElementById('athens_cookie_link').href = athens_cookie_url; 
+    */
+
+}
+function trimWhitespace (str) {
+	var	str = str.replace(/^\s\s*/, ''),
+		ws = /\s/,
+		i = str.length;
+	while (ws.test(str.charAt(--i)));
+	return str.slice(0, i + 1);
+}
+//]]>
+</script>
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+	<ul id="breadcrumb">
+		<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+		<li><a href="/library/"> Library</a> / </li>
+		<li><a href=".">Utilities</a></li>
+	</ul>  
+</ul>
+<div id="content"> 
+
+<h1>URL Encoder</h1>
+
+<div id="leftcol">
+
+<p>The following characters are encoded:&nbsp;&nbsp;&nbsp;  <code>% : ; / \ ,  ? = # &amp; + $  ' &quot; (space) </code></p>
+<p><strong>See also: </strong><a href="decode-url.htm">URL DEcoder</a>.</p>
+<form method="get" action="encode-url.htm">
+<textarea name="url" id="url" cols="100" rows="2" wrap="soft" onfocus="if (this.value=='&nbsp;Enter URL...') this.value=''"> Enter URL...</textarea>
+<br />
+<input type="button" value="Encode" onclick="showResult();" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input name="Reset" type="reset" value="Reset" />
+<br /><br />
+<h2 style="margin:0">Results</h2>
+<h3>Encoded URL</h3>
+<textarea name="encoded-url" cols="100" rows="2" wrap="soft" id="encoded-url" onclick="this.focus(); this.select();"></textarea>
+<h3>EZProxy URL - <a id="ezproxy_link" href="#" target="_blank">Test</a></h3>
+<p><textarea name="ezproxy" cols="100" rows="2" wrap="soft" id="ezproxy" onclick="this.focus(); this.select();"></textarea></p>
+
+    
+<!--    
+<h3>Athens URLs</h3>
+<h4>Redirect (<a id="athens_redirect_link" href="#" target="_blank">Test</a>)</h4>
+<textarea name="athens_redirect" cols="100" rows="2" wrap="soft" id="athens_redirect" onclick="this.focus(); this.select();"></textarea>
+<h4>Set UWE cookie and redirect (<a id="athens_cookie_link" href="#" target="_blank">Test</a>)</h4>
+<textarea name="athens_cookie" cols="100" rows="3" wrap="soft" id="athens_cookie" onclick="this.focus(); this.select();"></textarea>
+-->
+
+<p><a href="http://ezproxy.uwe.ac.uk/login?url=http://ezproxy.uwe.ac.uk/admin" target="_blank">EZProzy admin</a></p>
+</form>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>

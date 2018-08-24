@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Create An Interstitial Page Link</title>
+<meta name="team" content="Library IT Team" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="keywords" content="university west england bristol library services URL Encoder" />
+<meta name="description" content="URL Encoder" />
+<style type="text/css">
+/*<![CDATA[*/
+#content textarea { margin: 0 auto 1em; }
+#content form p { margin: auto auto 0.3em; visibility: visible }
+/*]]>*/
+</style>
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+	initForm();
+});
+function initForm() {
+	$('#test_span').hide();
+}
+function showResult() {
+//	alert($("#url").val());
+	if ( $("#url").val() == 'Enter resource URL...' ) {
+		alert('Please enter the resource URL first');
+		return false;	
+	}
+	var url_val = $('#url').val();
+	url_val = trimWhitespace(url_val);
+	// Check for 'http(s)'
+	if (!(/^https?:\/\/(.*$)/m.test(url_val))) {
+		// Assume 'http'
+		url_val = 'http://' + url_val;
+	}
+	var url_prefix = 'https://library.uwe.ac.uk/cgi-bin/uwe/elib/database_links.cgi?name=';
+	var jnl_suffix = '&amp;type=journal';
+	var book_suffix = '&amp;type=book';
+	// Build link
+	var page_url = url_prefix + encodeURIComponent(url_val);
+	if ( $("#radio_journal").is(':checked') ) {
+		page_url = page_url + jnl_suffix;
+	}
+	else if ( $("#radio_book").is(':checked') ) {
+		page_url = page_url + book_suffix;
+	}
+	$('#page_link').val(page_url);
+	$('#test_link').attr('href', page_url);
+	$('#test_span').show();
+}
+function trimWhitespace (str) {
+	var	str = str.replace(/^\s\s*/, ''),
+		ws = /\s/,
+		i = str.length;
+	while (ws.test(str.charAt(--i)));
+	return str.slice(0, i + 1);
+}
+//]]>
+</script>
+
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+	<ul id="breadcrumb">
+		<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+		<li><a href="/library/"> Library</a> / </li>
+		<li><a href=".">Utilities</a></li>
+	</ul>  
+<div id="content"> 
+
+<h1>Create An Interstitial  Page Link</h1>
+
+<div id="leftcol">
+
+<p>For example, to show a username and password or other message before connecting to the resource.</p>
+<h2>Resource URL</h2>
+<form method="get" action="encode-url.htm">
+<p>
+  <textarea name="url" id="url" cols="100" rows="2" wrap="soft" onfocus="if (this.value=='Enter resource URL...') this.value=''" onblur="if (this.value=='') this.value='Enter resource URL...'">Enter resource URL...</textarea>
+</p>
+<p>
+  <input type="radio" name="res_type" id="radio_database" value="database" checked="checked" /><label for="radio_database">Database</label>
+  <br />
+  <input type="radio" name="res_type" id="radio_journal" value="journal" /><label for="radio_journal">Journal</label>
+  <br />
+  <input type="radio" name="res_type" id="radio_book" value="book" /><label for="radio_book">Book</label>
+</p>
+<p>&nbsp;</p>
+<p>
+  <input type="button" value="Build link" onclick="showResult();" />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input name="Reset" type="reset" value="Reset" onclick="initForm(); return true" />
+</p>
+<h2>Link to interstitial page <span id="test_span"> - <a id="test_link" href="#" target="_blank">Test the link</a></span></h2>
+<textarea name="page_link" cols="100" rows="2" wrap="soft" id="page_link" onclick="this.focus(); this.select();"></textarea>
+</form>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>

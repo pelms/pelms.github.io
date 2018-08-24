@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Create a short URL with usage stats</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="team" content="Library IT Team" />
+<meta name="keywords" content="university west england bristol library services" />
+<meta name="description" content="Create a short URL with usage stats" />
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+
+<script type="text/javascript">
+//<![CDATA[
+function showResult() {
+	var url = document.getElementById('url').value;
+	url = jQuery.trim(url);
+	url = 'http://www.uwe.ac.uk/library/info/utils/url/?url=' + encodeURIComponent(url);
+	// Redirect URL
+	document.getElementById('redirect_url').value = url;
+	document.getElementById('redirect_link').href = url;
+}	
+
+function resetForm() {
+	if (window.confirm('Clear the form?')) {
+		document.getElementById('url_form').reset();
+	}
+}
+
+//]]>
+</script>
+
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+	<ul id="breadcrumb">
+		<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+		<li><a href="/library/"> Library</a> / </li>
+		<li><a href=".">Utilities</a></li>
+	</ul>  
+<div id="content"> 
+
+<h1>Create a short URL with usage stats</h1>
+
+<div id="leftcol">
+
+<p>Enter your page URL below, then use the 'URL with analytics' in a URL shortener.</p>
+<p>You can then get usage stats from the Library IT Team.</p>
+<form method="get" action="encode-url.htm" id="url_form">
+  <textarea name="url" id="url" cols="100" rows="2" onfocus="if (this.value=='&nbsp;Enter URL...') this.value=''">&nbsp;Enter URL...</textarea>
+  <br />
+  <input type="button" value="Generate" onclick="showResult();" />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input name="Reset" type="button" id="Reset" onclick="resetForm()" value="Clear" />
+  <br />
+  <br />
+  <h2 style="margin:0">Results</h2>
+
+  <h3>URL with analytics - <a id="redirect_link" href="#" target="_blank">Test</a></h3>
+  <p>
+    <textarea name="redirect_url" cols="100" rows="2" id="redirect_url" onclick="this.focus(); this.select();"></textarea>
+  </p>
+  <h2>URL shorteners</h2>
+  <ul>
+    <li><a href="http://goo.gl/" target="_blank"><strong>goo.gl</strong></a></li>
+    <li><a href="http://go.uwe.ac.uk/" target="_blank"><strong>go.uwe.ac.uk</strong></a></li>
+  </ul>
+</form>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</html>

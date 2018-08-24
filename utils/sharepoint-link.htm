@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Create A Public SharePoint Link</title>
+<meta name="team" content="Library IT Team" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="keywords" content="university west england bristol library services URL Encoder" />
+<meta name="description" content="URL Encoder" />
+<style type="text/css">
+/*<![CDATA[*/
+#content textarea { margin: 0 auto 1em; }
+#content form p { margin: auto auto 0.3em; visibility: visible }
+/*]]>*/
+</style>
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+	initForm();
+});
+function initForm() {
+	$('#test_span').hide();
+}
+function showResult() {
+	var url_val = $('#url').val();
+	url_val = trimWhitespace(url_val);
+	if (/^https:\/\/public(\.uwe\.ac\.uk\/.*)/m.test(url_val)) {
+		// OK SharePoint URL
+		var public_url = url_val.replace(/^https:\/\/public(\.uwe\.ac\.uk\/.*)/mg, "http://www2$1");
+		$('#public_link').val(public_url);
+		$('#test_link').attr('href', public_url);
+		$('#test_span').show();
+	} else {
+		alert('Not a valid SharePoint URL');
+	}
+}
+function trimWhitespace (str) {
+	var	str = str.replace(/^\s\s*/, ''),
+		ws = /\s/,
+		i = str.length;
+	while (ws.test(str.charAt(--i)));
+	return str.slice(0, i + 1);
+}
+//]]>
+</script>
+
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+	<ul id="breadcrumb">
+		<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+		<li><a href="/library/"> Library</a> / </li>
+		<li><a href=".">Utilities</a></li>
+	</ul>  
+<div id="content"> 
+
+<h1>Create A Public SharePoint Link</h1>
+
+<div id="leftcol">
+
+<ol>
+    <li>Copy the link to your document on the <a href="https://public.uwe.ac.uk/services/library/Pages/Default.aspx" target="_blank">public SharePoint site</a> (opens in new tab).</li>
+    <li>Paste into the box below</li>
+</ol>
+<h2>SharePoint URL</h2>
+<form method="get" action="encode-url.htm">
+<textarea name="url" id="url" cols="100" rows="2" wrap="soft" onfocus="if (this.value=='&nbsp;Enter SharePoint URL...') this.value=''" onblur="if (this.value=='') this.value='&nbsp;Enter SharePoint URL...'"> Enter SharePoint URL...</textarea>
+<br />
+<input type="button" value="Convert link" onclick="showResult();" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input name="Reset" type="reset" value="Reset" onclick="initForm(); return true" />
+<br /><br />
+<h2>Public link <span id="test_span"> - <a id="test_link" href="#" target="_blank">Test the link</a></span></h2>
+<textarea name="public_link" cols="100" rows="2" wrap="soft" id="public_link" onclick="this.focus(); this.select();"></textarea>
+</form>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>

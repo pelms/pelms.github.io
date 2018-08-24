@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Redirecting...</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+<style type="text/css">
+body { margin: 0; padding: 0 }
+p { margin: 6px 2px }
+p span#wait { color: #003399; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 90% }
+</style>
+</head>
+<body>
+<p><span id="wait">&nbsp;Please wait...&nbsp;</span></p>
+<script type="text/javascript">
+<!-- Google Analytics code -->
+try {
+var pageTracker = _gat._getTracker("UA-651638-4");
+_gat._anonymizeIp();
+pageTracker._trackPageview();
+} catch(err) {}
+<!-- END Google Analytics code -->
+var url = window.location.search.slice(5);
+if (url != '') { 
+	url = decodeURIComponent(url);
+//alert('link, URL_Shortener , ' + url);
+	pageTracker._trackEvent('link','URL_Shortener',url);
+	// Delay added 2012-03-21
+	setTimeout('document.location.href = decodeURIComponent(url)', 500);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>UWE Library Services: ISBN Converter</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="team" content="Library IT Team" />
+<meta name="keywords" content="university west england bristol library services" />
+<meta name="description" content="ISBN 10 to ISBN 13 converter" />
+<!--  Add any css styles specific to this page here  -->
+<style type="text/css">
+/*<![CDATA[*/
+#content label { font-weight: bold }
+#isbn_table { 
+	border-collapse: separate; 
+	background-color: #fff; 
+	margin: 1.4em 1em;
+	padding: 0.4em; 
+	border: 1px #ccc solid
+	}
+/*]]>*/
+</style>
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+
+<script type="text/javascript" src="/library/info/utils/js/isbn.js"></script>
+
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+<ul id="breadcrumb">
+	<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+	<li><a href="/library/"> Library</a> / </li>
+	<li><a href=".">Utilities</a></li>
+</ul>
+<div id="content"> 
+
+<h1>ISBN Converter</h1>
+
+<div id="leftcol">
+
+<ol>
+	<li>Enter a 10 or 13-digit ISBN in the 'Original ISBN' field</li>
+	<li>Optionally check the 'Hyphenate ISBNs' box</li>
+	<li>Click the 'Check and convert' button to validate and convert the number</li>
+    <li>Optionally, look up the entry in Google Books via the 'Look up ISBN' button.</li>
+</ol>
+<form name="isbncnvt" action="">
+<table id="isbn_table" border="0" cellpadding="6">
+<tr>
+<td align="right"><label for="isbn_in">Original  ISBN:</label></td>
+<td><input name="isbn_in" id="isbn_in" value="" /></td>
+<td><input type="button" value="Check and convert" onclick="convertISBN()" /></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="button" name="gbooks_lookup10" id="gbooks_lookup10" value="Look up ISBN" onclick="lookupISBN('isbn_in')" /></td>
+</tr>
+<tr>
+<td align="right"><label for="isbn_out">Converted  ISBN:</label></td>
+<td><input name="isbn_out" id="isbn_out" value="" onclick="this.focus(); this.select();" /></td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="button" name="gbooks_lookup13" id="gbooks_lookup13" value="Look up ISBN" onclick="lookupISBN('isbn_out')" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><input type="checkbox" name="hyphenate" id="hyphenate" value="Yes" />&nbsp;<label for="hyphenate">Hyphenate ISBNs</label></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="4"><input type="reset" name="cancel" value="Clear Form" /></td>
+</tr>
+</table>
+</form>
+
+<form method="get" action="http://books.google.com/books" name="f" id="f" target="_blank">
+<input type="hidden" name="bm" value="1">
+<input type="hidden" name="num" value="10" />
+<input type="hidden" name="as_isbn" id="as_isbn" value="">
+</form>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>URL Encoder</title>
+<meta name="team" content="Library IT Team" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="keywords" content="university west england bristol library services URL Encoder" />
+<meta name="description" content="URL Encoder" />
+<!--  Add any css styles specific to this page here  -->
+<style type="text/css">
+/*<![CDATA[*/
+#content textarea { margin: 0 auto 1em; }
+#content form p { margin: auto auto 0.3em; }
+/*]]>*/
+</style>
+<script type="text/javascript">
+//<![CDATA[
+<!--
+function buildURL() {
+	var urlPrefix = 'http://library.uwe.ac.uk/uhtbin/cgisirsi/x/FRENCHAY/x/5?user_id=web-uwe&password=WEB-UWE&srchfield1=PER^PERTITLE^^Title Processing^journal title&library=UWE-LIBS&sort_by=TI&relevance=on&searchdata1=';
+	var search_term = document.getElementById('Journal_title').value;
+	if ((search_term != '') && (search_term != 'Enter journal title...')) {
+		document.getElementById('test_link').innerHTML = search_term;
+		var searchURL = urlPrefix + encodeURIComponent(search_term);
+		document.getElementById('url').value = searchURL;
+		document.getElementById('test_link').href = searchURL;
+	}
+}
+//-->
+//]]>
+</script>
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+	<ul id="breadcrumb">
+		<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+		<li><a href="/library/"> Library</a> / </li>
+		<li><a href=".">Utilities</a></li>
+	</ul>  
+<div id="content"> 
+
+<h1>Catalogue Search Link Generator</h1>
+
+<div id="leftcol">
+
+<form action="Javascript:buildURL()">
+  <h2>Journal title</h2>
+  <p>
+  <input name="Journal_title" type="text" id="Journal_title" onfocus="if (this.value=='Enter journal title...') this.value=''" value="Enter journal title..." size="100" />
+</p>
+<p>
+<input name="Button" type="button" onclick="buildURL();" value="Encode" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input tabindex="-1" name="Reset" type="reset" value="Reset" />
+</p>
+<h2 style="margin:0">Result </h2>
+<textarea name="url" cols="100" rows="4" id="url" onclick="this.focus();this.select();"></textarea>
+<p><strong>Test URL: </strong><a id="test_link" href="#" target="_blank"></a></p>	
+</form>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>

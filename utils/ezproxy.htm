@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>EZProxy Encoder</title>
+<meta name="team" content="Library IT Team" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="keywords" content="university west england bristol library services URL Encoder" />
+<meta name="description" content="EZProxy Encoder" />
+    
+<style type="text/css">
+#content .hidden { visibility: hidden; }
+#content p strong,
+#content label { 
+    font-family: Arial, sans-serif; 
+    font-size: 110%;
+    color: darkslateblue;
+    display: inline-block;
+    margin-bottom: 0.3em;
+}
+#content textarea { margin: 0 auto 1em; }
+#content form p { margin: auto auto 0.3em; }
+#content code { font-size: 120%; color: #090 }
+input[type='text'] { width: 50%; }
+#content #stanza,
+#content #ezproxy { 
+    white-space:  pre; 
+    font-family: Consolas, monospace;
+    tab-size: 4;
+    font-size: 13px;
+    padding: 0.5em;
+    border:  1px solid #ccc;
+    width: 50%;
+}
+#content #ezproxy  { width:  70%; }
+#content label { 
+    font-weight: bold; 
+    margin-top: 0.6em; 
+    display: inline-block; 
+}
+#content #group_info { 
+    padding: 0.5em;
+    margin-top: 0.8em;
+    border:  1px dotted #ccc;
+    width: 50%;  
+    height: 1.3em;
+    background-color: floralwhite;
+}
+</style>
+    
+<script type="text/javascript">
+    
+function showResult() {
+    
+	var title_val = document.getElementById('title').value.trim();
+	document.getElementById('title').value = title_val;
+
+    var url_val = document.getElementById('url').value.trim();
+	document.getElementById('url').value = url_val;
+    
+    var group_val = document.getElementById('group').value;
+    console.info(group_val);
+    
+	var encoded_url = encodeURIComponent(url_val);
+
+	// EZProxy URL
+	if (/^https:/im.test(url)) {
+		var ez_prefix = 'https://login.ezproxy.uwe.ac.uk/login?url=';
+	} else {
+		var ez_prefix = 'http://ezproxy.uwe.ac.uk/login?url=';
+	}	
+    var ez_url = ez_prefix + url_val;
+	document.getElementById('ezproxy').value = ez_url;
+	document.getElementById('ezproxy_link').href = ez_url;
+    
+    var ezproxy_str = "Group\t" + group_val + "\r\n";
+    ezproxy_str += "Title\t" + title_val + "\r\n";
+    ezproxy_str += "URL\t\t" + url_val + "\r\n";
+    var domain = url_val.replace(/\b(https?|ftp):\/\/([-A-Z0-9.]+)(\/[-A-Z0-9+&@#\/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;]*)?/ig, "$2");
+    ezproxy_str += "DJ\t\t" + domain + "\r\n";
+    document.getElementById('stanza').innerHTML = ezproxy_str;
+    document.getElementById('host_btn').className = "";
+
+}
+
+function groupInfo() {
+    var g = document.getElementById("group");
+    var title_txt = g.options[g.selectedIndex].title;  
+    document.getElementById('group_info').innerHTML = title_txt;
+}
+function removeHost() {
+    var ezproxy_str = document.getElementById('stanza').innerHTML;
+    ezproxy_str = ezproxy_str.replace(/(DJ\s+)[\w]+\./img, "$1");
+    document.getElementById('stanza').innerHTML = ezproxy_str;
+}
+function resetForm() {
+    document.getElementById('stanza').innerHTML = "";
+    document.getElementById('host_btn').className = "hidden";
+}
+</script>
+    
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+	<ul id="breadcrumb">
+		<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+		<li><a href="/library/"> Library</a> / </li>
+		<li><a href=".">Utilities</a></li>
+	</ul>  
+<div id="content"> 
+    
+<h1>EZProxy Encoder</h1>
+
+<div id="leftcol">
+    
+<form method="get" action="encode-url.htm">
+
+<p><label for="group">Group</label></p> 
+<p>
+<select name="group" id="group" onchange="groupInfo()">
+    <option value="" selected="selected" title="">Please select...</option>
+    <option value="UWE" title="UWE staff &amp; students">UWE</option>
+    <option value="Students" title="All students, UWE staff">Students</option>
+    <option value="UK" title="UK staff &amp; students, UWE staff and students">UK</option>
+    <option value="UK_staff_all_students" title="UK staff &amp; students, UWE staff &amp; students, international students">UK_staff_all_students</option>
+    <option value="Default" title="All authenticated users">Default</option>
+</select>
+<div id="group_info"></div>
+<p><label for="title">Title</label></p>
+<p><input type="text" name="title" id="title" /></p>
+</p> 
+    <p><label for="url">URL</label></p>
+    <p><input type="text" name="url" id="url" /></p>
+<p style="margin-top: 1.5em">
+    <input type="button" value="Encode" onclick="showResult();" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="Reset" type="reset" value="Reset" onclick="resetForm()" />
+</p>
+<p>&nbsp;</p>
+    
+<h2>Results</h2>
+<p><strong>EZProxy URL</strong> - <a id="ezproxy_link" href="#" target="_blank">Test</a></p>
+    <p><textarea name="ezproxy" rows="2" wrap="soft" id="ezproxy" onclick="this.focus(); this.select();"></textarea></p>
+
+<p><strong>Starting EZProxy stanza</strong></p>
+    <textarea id="stanza" rows="5" onclick="this.focus(); this.select();"></textarea>
+    <p><input type="button" value="Reduce domain" id="host_btn"  class="hidden" onclick="removeHost()" /></p>
+     
+<p style="text-align: right"><a href="http://ezproxy.uwe.ac.uk/login?url=http://ezproxy.uwe.ac.uk/admin" target="_blank">EZProzy admin</a></p>
+</form>
+    
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>
+

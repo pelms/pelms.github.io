@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>'Add to calendar' Link Generator</title>
+<meta name="team" content="Library IT Team" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="keywords" content="university west england bristol library services URL Encoder" />
+<meta name="description" content="'Add to calendar' link Generator" />
+<style type="text/css">
+/*<![CDATA[*/
+#content textarea { margin: 0 auto 1em; }
+#content form p { margin: auto auto 0.3em; }
+#ical_form table td { border-color: #ccc }
+/*]]>*/
+</style>
+<script type="text/javascript">
+function formatTime(time_str) {	// Remove colon separator 
+	time_str = time_str.replace(/:/ig, "");
+	return time_str;
+}
+function formatTextInput(text_str) {
+	text_str = encodeURIComponent(text_str);
+	text_str = text_str.replace(/'/ig, "%27"); // This doesn't work, get  \'
+	return text_str;
+}
+function buildLink() {
+	var prefix = 'http://www.uwe.ac.uk/library/info/bookings/ical/ical.php?';
+	var title = 'title=' + formatTextInput($("#subject").val());
+	var location = '&location=' + formatTextInput($("#location").val());
+	var desc = '&desc=' + formatTextInput($("#description").val());
+	// Format start time
+	var s_date = $("#s_date").val();
+	var s_time = $("#s_time").val();
+	s_time = formatTime(s_time);
+	var start = '&start=' + s_date + 'T' + s_time + '00';
+	// Format end time
+	var e_date = $("#e_date").val();
+	var e_time = $("#e_time").val();
+	e_time = formatTime(e_time);
+	var end = '&end=' + e_date + 'T' + e_time + '00';
+	// Build link
+	var ical_url = prefix + title + location + desc + start + end;
+	// Display link	
+	$("#ical_link").val(ical_url);	
+	$("#test_link").attr('href', ical_url);
+}
+</script>
+
+<link type="text/css" href="/library/includes/jquery/ui/css/smoothness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+<link type="text/css" href="/library/includes/jquery/ui/css/jquery.ui.timepicker.css" rel="stylesheet" />
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+
+<script type="text/javascript" src="/library/includes/jquery/ui/js/jquery-ui-1.8.19.custom.min.js"></script>
+<script type="text/javascript" src="/library/includes/jquery/ui/js/jquery.ui.timepicker.js"></script>
+
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+<ul id="breadcrumb">
+	<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+	<li><a href="/library/"> Library</a> / </li>
+	<li><a href=".">Utilities</a></li>
+</ul>
+<div id="content"> 
+
+<h1>'Add to calendar' Link Generator</h1>
+
+<div id="leftcol">
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#start_date").datepicker({ 
+		dateFormat: "D, d M yy",
+		altField: "#s_date", 
+		altFormat: "yymmdd"
+	});
+	// Set default end date to be same as selected start date
+	$("#start_date").change(function() {
+		var default_end_date = $(this).val();
+		$("#end_date").datepicker("option", "defaultDate", default_end_date);
+	});
+	$("#end_date").datepicker({ 
+		dateFormat: "D, d M yy",
+		altField: "#e_date", 
+		altFormat: "yymmdd"
+	});
+	$('#start_time').timepicker({
+		minutes: { interval: 5 },
+		amPmText: ['am', 'pm'],
+		minuteText: 'Min',
+		defaultTime: '',
+		altField: "#s_time", 
+		altFormat: "HHmm"			
+	});	
+	$('#end_time').timepicker({
+		minutes: { interval: 5 },
+		amPmText: ['am', 'pm'],
+		minuteText: 'Min',
+		defaultTime: '',
+		altField: "#e_time", 
+		altFormat: "HHmm"			
+	});	
+	$('#ical_form input[type="reset"]').click(function(){
+		$("a#test_link").attr('href', '#');
+    });
+
+});	
+</script>
+
+<form id="ical_form" name="ical_form" method="post" action="">
+    <table width="90%" border="1" cellspacing="0" cellpadding="6">
+        <tr>
+            <td><div align="right"><label for="subject">Subject</label></div></td>
+            <td><input type="text" name="subject" id="subject" /></td>
+        </tr>
+        <tr>
+            <td><div align="right"><label for="Location">Location</label></div></td>
+            <td><input type="text" name="location" id="location" /></td>
+        </tr>
+        <tr>
+            <td><div align="right">Start</div></td>
+            <td><label><input type="text" name="start_date" id="start_date" /> Date</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <label><input type="text" name="start_time" id="start_time" /> Time</label>            </td>
+        </tr>
+        <tr>
+            <td><div align="right">End</div></td>
+            <td><label><input type="text" name="end_date" id="end_date" /> Date</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <label><input type="text" name="end_time" id="end_time" /> Time</label>            </td>
+        </tr>
+        <tr>
+            <td><div align="right"><label for="description">Description</label></div></td>
+            <td><textarea name="description" id="description" cols="45" rows="5"></textarea></td>
+        </tr>
+        <tr>
+            <td><div align="right"></div></td>
+            <td><input type="button" name="build_link" id="build_link" value="Build link" onclick="buildLink()" />
+            &nbsp;&nbsp;&nbsp;
+            <input type="reset" name="reset" id="reset" value="Reset" /></td>
+        </tr>
+        <tr>
+            <td><div align="right"><a id="test_link" href="#">Test the link</a></div></td>
+            <td><textarea name="ical_link" id="ical_link" cols="60" rows="3" onclick="this.focus(); this.select();"></textarea></td>
+        </tr>
+     </table>
+<input type="hidden" name="s_date" id="s_date" />
+<input type="hidden" name="s_time" id="s_time" />
+<input type="hidden" name="e_date" id="e_date" />
+<input type="hidden" name="e_time" id="e_time" />
+</form>
+<p>&nbsp;</p>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>
+

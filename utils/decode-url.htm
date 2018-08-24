@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>URL Decoder</title>
+<meta name="team" content="Library IT Team" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="keywords" content="university west england bristol library services URL Decoder" />
+<meta name="description" content="URL Encoder" />
+<!--  Add any css styles specific to this page here  -->
+<style type="text/css">
+/*<![CDATA[*/
+<!--
+#content textarea { margin: 0 auto 1em; }
+#content form p { margin: auto auto 0.3em; }
+#content code { font-size: 120%; color: #090 }
+-->
+/*]]>*/
+</style>
+<script type="text/javascript">
+//<![CDATA[
+<!--
+function showResult() {
+	encoded_url = document.getElementById('encoded_url').value;
+	/*
+	urlResult = encoded_url.replace(/%3A/gi,":");
+	urlResult = urlResult.replace(/%2F/gi,"/");
+	urlResult = urlResult.replace(/%2E/gi,".");
+	urlResult = urlResult.replace(/%20/gi," ");
+	urlResult = urlResult.replace(/%7E/gi,"~");
+	urlResult = urlResult.replace(/%3F/gi,"?");
+	urlResult = urlResult.replace(/%3D/gi,"=");
+	urlResult = urlResult.replace(/%3B/gi,";");
+	urlResult = urlResult.replace(/%23/gi,"#");
+	urlResult = urlResult.replace(/%26/gi,"&");
+	urlResult = urlResult.replace(/%2B/gi,"+");
+	urlResult = urlResult.replace(/%24/gi,"$");
+	urlResult = urlResult.replace(/%5F/gi,"_");
+	urlResult = urlResult.replace(/%2C,/gi,",");
+	urlResult = urlResult.replace(/%25/gi,"%");
+	urlResult = urlResult.replace(/%22/gi,'"');
+	urlResult = urlResult.replace(/&amp;/gi,'&');
+	*/
+	var urlResult = decodeURIComponent(encoded_url);
+	urlResult = urlResult.replace(/&amp;/gi,'&');
+	urlResult = urlResult.replace(/%7C/gi,"|");
+	urlResult = urlResult.replace(/%20/gi,' ');
+	urlResult = urlResult.replace(/%22/gi,'"');
+	urlResult = urlResult.replace(/%27/gi,"'");
+	urlResult = urlResult.replace(/%28/gi,"(");
+	urlResult = urlResult.replace(/%29/gi,")");
+	document.getElementById('decoded_url').value = urlResult;
+}
+/*
+	function athensDA() {
+		var athensPrefix1 = 'http://auth.athensams.net/setorg.php?id=urn:mace:eduserv.org.uk:athens:provider:uwe.ac.uk&amp;ath_returl=';
+		var athensPrefix2 = 'http://auth.athensams.net/setorg.php?id=urn:mace:eduserv.org.uk:athens:provider:uwe.ac.uk&ath_returl=';
+		var athensDecode = urlResult.replace(athensPrefix1, "");
+		athensDecode = urlResult.replace(athensPrefix2, "");
+		document.getElementById('athens').value = athensDecode;
+	}
+*/
+//-->
+//]]>
+</script>
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+	<ul id="breadcrumb">
+		<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+		<li><a href="/library/"> Library</a> / </li>
+		<li><a href=".">Utilities</a></li>
+	</ul>  
+<div id="content"> 
+
+<h1>URL DEcoder</h1>
+
+<div id="leftcol">
+
+<p>The following characters are decoded:&nbsp;&nbsp;&nbsp;  <code>% : ; . , ~ ? = # &amp; + $ _ &quot; (space) &amp;amp;</code></p>
+<p><strong>See also:</strong> <a href="encode-url.htm">URL Encoder</a>. </p>
+<form method="get" action="encode-url.htm">
+<p>
+<textarea name="encoded_url" id="encoded_url" cols="100" rows="6" wrap="soft" onfocus="if (this.value=='&nbsp;Enter URL...') this.value=''"> Enter URL...</textarea>
+</p>
+<p>
+<input type="button" value="Decode" onclick="showResult();" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input name="Reset" type="reset" value="Reset" />
+</p>
+<h2 style="margin:0">Result </h2>
+<p><strong>Decoded URL</strong></p>
+<textarea name="decoded_url" cols="100" rows="6" wrap="soft" id="decoded_url" onclick="this.focus(); this.select();"></textarea>
+<!--
+<p><strong>Decoded AthensDA URL </strong></p>	
+<textarea name="athens" cols="100" rows="4" wrap="soft" id="athens" onclick="this.focus(); this.select();"></textarea>
+-->
+</form>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Build a QR Code</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="team" content="Library IT Team" />
+<meta name="keywords" content="university west england bristol library services" />
+<meta name="description" content="Build a QR Code" />
+
+<style type="text/css">
+img.qr_code{ border: 1px dotted #999 }
+figure { margin: 0 0 1em }
+#custom_size_div { margin: 0 0 1.5em }
+</style>
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#custom_size_div').hide();
+	$('input[name="qr_size"]').click(function() {
+		if ( $('#qr_size_custom').is(':checked') ) {
+			$('#custom_size_div').show('medium');
+		} else {
+			$('#custom_size_div').hide('medium');
+		}
+	});
+});
+
+function showResult() {
+	var url = $('#url').val();
+	if (url) { 
+		url = url;
+		url = jQuery.trim(url);
+		var qr_size = '0';
+		// Get requested size
+		qr_size = $('input[name="qr_size"]:checked').val();
+		if ( qr_size == 'custom' ) {
+			qr_size = $('#custom_size').val();
+		} 	
+		var prefix = 'https://chart.googleapis.com/chart?cht=qr&chs=' + qr_size + 'x' + qr_size + '&chl=';
+		if ( (qr_size > 547) || (qr_size < 37) ) {
+			alert('Please choose a size between 37 and 547 pixels');
+		} else {
+			// Display the QR code
+			document.getElementById('qr_code_img').src = prefix + url;
+			$('figcaption').text(qr_size + ' pixels');
+		}
+		
+	}
+}	
+
+
+function resetForm() {
+	if (window.confirm('Clear the form?')) {
+		document.getElementById('qr_code_img').src = '/library/info/qr/qr_blank.png';
+		document.getElementById('qr_form').reset();
+		$('#url').text(url_hint);
+		
+	}
+}
+</script>
+
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+<ul id="breadcrumb">
+	<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+	<li><a href="/library/"> Library</a> / </li>
+	<li><a href="../">Utilities</a></li>
+</ul>
+<div id="content"> 
+
+<h1>Build a QR Code</h1>
+
+<div id="leftcol">
+
+<form method="get" action="encode-url.htm" id="qr_form">
+  <h2>Generate a shortened URL</h2>
+  <ul>
+    <li><a href="http://goo.gl/" target="_blank"><strong>goo.gl</strong></a><br />
+Log in with a Google account so that you can get usage statistics later</li>
+    <li><a href="http://go.uwe.ac.uk/" target="_blank"><strong>go.uwe.ac.uk</strong></a></li>
+  </ul>
+  <h3>Enter URL (or free text)</h3>
+  <p>
+    <textarea name="url" id="url" cols="100" rows="2"></textarea>
+  </p>
+  <h3>Size</h3>
+  <p>
+<input type="hidden" name="qr_code_size" id="qr_code_size" value="" />
+<input name="qr_size" type="radio" id="qr_size_200" value="200" checked="checked" /><label for="qr_size_200">200px</label><br />
+<input name="qr_size" type="radio" id="qr_size_300" value="300" /><label for="qr_size_300">300px</label><br />
+<input type="radio" name="qr_size" id="qr_size_500" value="500" /><label for="qr_size_500">500px</label><br />
+<input type="radio" name="qr_size" id="qr_size_custom" value="custom" /><label for="qr_size_custom">Custom</label>
+  </p>
+  <div id="custom_size_div">
+    <label for="custom_size">Size in pixels</label>
+    <input name="custom_size" type="text" id="custom_size" size="5" />
+    <span style="font-size:smaller; color:green">(between 37 and 547)</span>
+  </div>
+  <p>
+    <input type="button" value="Show QR code" onclick="showResult();" />
+  </p>
+  <h3>QR codes</h3>
+  
+<figure>
+<img src="/library/info/qr/qr_blank.png" alt="" id="qr_code_img" name="qr_code_img" class="qr_code" />  
+<figcaption></figcaption>
+</figure>
+
+ 
+</form>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>

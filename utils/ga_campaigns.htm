@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>UWE Library Services: Email Tracking Link Generator</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en_GB" />
+<meta name="author" content="Phil Elms" />
+<meta name="team" content="Library IT Team" />
+<meta name="keywords" content="university west england bristol library services" />
+<meta name="description" content="Google Analytics Campaign Tracking Link Generator" />
+
+<style type="text/css">
+#content label { font-weight: bold }
+#content label:hover { color: #f00 }
+#content #test_link_para { display: none }
+#content #base_url { color: #999}
+</style>
+
+<!--#include virtual="/library/cms/template_2016/includes/_header.htm" -->
+
+<script type="text/javascript">
+/* <![CDATA[ */ 
+$(document).ready(function() {
+
+	// Set cookie to exclude user from GA page views
+	pageTracker._setVar('uwe_web_editor');
+
+	$('#base_url').click(function(){
+		if ($(this).attr('value') == 'e.g. http://www.uwe.ac.uk/library/news/#item') { 
+			$(this).attr('value','');
+			$(this).css('color','#000');
+		}
+	});
+	$('#base_url').blur(function(){
+		if ($(this).attr('value') == '') { 
+			$(this).attr('value','e.g. http://www.uwe.ac.uk/library/news/#item');
+			$(this).css('color','#999');
+		}
+	});	
+
+});
+
+function createUrl() {
+	<!--#config timefmt="%Y-%m-%d" -->
+	var date_stamp = '<!--#echo var="DATE_LOCAL" -->';
+	<!--#config timefmt="%e %b %Y" -->
+	// global variables...	
+	base_url_val =  prepareBaseUrl();
+	utm_source_val = prepareValue('utm_source', 1);
+	utm_medium_val = prepareValue('utm_medium', 1);
+	utm_campaign_val = prepareValue('utm_campaign', 1);
+	if (validateForm()) {
+		var ga_url_val = base_url_val[0] + '?utm_source=' + utm_source_val + '&utm_medium=' + utm_medium_val + '&utm_campaign=LIB_' + utm_campaign_val + '_(' + date_stamp + ')';
+		// Append #anchor if it exists
+		if (base_url_val[1]) {
+			ga_url_val = ga_url_val + '#' + base_url_val[1];
+		}
+		document.getElementById('ga_url').value = ga_url_val;
+		document.getElementById('test_link_para').style.display = 'block';
+		document.getElementById('test_link').href = ga_url_val;
+	} 
+	else {
+		
+	}
+}
+function prepareBaseUrl() {
+	var base_url_value = document.getElementById('base_url').value;
+	base_url_value = $.trim(base_url_value);
+	base_url_array = base_url_value.split('#');
+	return base_url_array;
+}
+function prepareValue(id) {
+	var this_value = document.getElementById(id).value;
+	this_value = $.trim(this_value);
+	this_value = this_value.replace(/\s/g, "_");
+	return this_value;
+}
+function validateForm() { 
+	if (base_url_val != '' && base_url_val != 'e.g. http://www.uwe.ac.uk/library/news/#item' && utm_source_val != '' && utm_medium_val != '' && utm_campaign_val != '') {
+		return true;
+	}
+	else {
+		alert('Please fill out all the fields');
+		document.getElementById('test_link_para').style.display = 'none';
+		return false;
+	}
+}
+function confirmClear() {
+	if (window.confirm('Clear the form?')) {
+		document.url_form.reset();
+		document.getElementById('test_link_para').style.display = 'none';
+		$('#base_url').css('color','#999');
+	}
+}
+/* ]]> */ 
+</script>
+
+<main id="contentwrapper" class="l-page__inner clearfix" tabindex="-1">
+<div id="allowNav">
+<ul id="breadcrumb">
+	<li><a href="http://www.uwe.ac.uk ">Home</a> / </li>
+	<li><a href="/library/"> Library</a> / </li>
+	<li><a href=".">Utilities</a></li>
+</ul>
+<div id="content"> 
+
+ <h1> Email Tracking  Link Generator</h1>
+ 
+ <div id="leftcol">
+
+ <p>Use links generated here to find out how many people are clicking on your email or blog links to Library web pages.</p>
+ <p>Enter your link below and use the  generated link in your email or blog post.</p>
+ <p>Stats can them be found in the 'Campaign' section of <a href="http://www.google.com/analytics" target="_blank">Google Analytics</a> (contact the Library IT Team for access).</p>
+<form id="url_form" name="url_form" method="get" action="">
+    <table border="0" cellspacing="0" cellpadding="6">
+        <tr>
+            <td><label for="base_url">Your&nbsp;link</label></td>
+            <td colspan="2"><input name="base_url" type="text" id="base_url" value="e.g. http://www.uwe.ac.uk/library/news/#item" size="80" /></td>
+        </tr>
+        <tr>
+            <td><label for="utm_source">Source</label></td>
+            <td><input name="utm_source" type="text" id="utm_source" size="30" /></td>
+            <td>e.g. 'Glenside blog', 'student email', 'law newsletter'</td>
+        </tr>
+        <tr>
+            <td><label for="utm_medium">Medium</label></td>
+            <td><input name="utm_medium" type="text" id="utm_medium" size="30" /></td>
+            <td>e.g. 'email', 'blog', 'uwe news snippet', 'print' *</td>
+        </tr>
+        <tr>
+            <td><label for="utm_campaign">Name</label></td>
+            <td><input name="utm_campaign" type="text" id="utm_campaign" size="30" /></td>
+            <td>A very short description of the email or article subject<br />  
+                (a date stamp will be added automatically).<br />
+                e.g. 'repository launch', 'BBS  survey', 'student law resources'</td>
+        </tr>
+        
+        <tr>
+            <td colspan="3">(For example, 
+            a BBS email to students about new resources might be: <br />
+            <em>Source</em> - BBS newsletter; <em>Medium</em> - email; <em>Name</em> - new eresources)</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="button" name="encode" id="encode" value="Create link" onclick="createUrl()" />
+            &nbsp;&nbsp;
+            <input type="button" name="clear" id="clear" value="Clear" onclick="confirmClear()" /></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="2"><textarea name="ga_url" id="ga_url" cols="80" rows="2" onclick="this.focus();this.select();"></textarea>
+                <p id="test_link_para"><a id="test_link" href="#" target="_blank">Test this link</a> (This click will not register in the stats).</p></td>
+        </tr>
+    </table>
+</form>
+<hr />
+<p><strong>* N.B. Tracking print URLs</strong></p>
+<p>Might be worth a go...</p>
+<ol>
+    <li>Create your URL above</li>
+    <li>Use this to obtain an unique shortened URL specifically for your print item (e.g. a bookmark or a  guide)<br />
+        If you use the 'custom alias' option at <a href="http://tinyurl.com/" target="_blank">TinyURL.com</a> you can make the link more 'print friendly'.</li>
+    <li>Use that link in your printed text.</li>
+    <li>Make sure the shortened link is not reused for other print items.</li>
+</ol>
+
+</div>
+<div class="clearfix"></div>
+</div><!-- /#content -->
+<aside class="m-block no-print"></aside>
+</div><!-- /#allowNav -->
+<!--#include virtual="/library/cms/template_2016/includes/_footer.htm" -->
+
+</body>
+</html>
